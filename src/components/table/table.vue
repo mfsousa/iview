@@ -13,17 +13,19 @@
                     :data="rebuildData"></table-head>
             </div>
             <div v-bar>
-                <div :class="[prefixCls + '-body']" :style="bodyStyle" ref="body" @scroll="handleBodyScroll"
-                    v-show="!((!!localeNoDataText && (!data || data.length === 0)) || (!!localeNoFilteredDataText && (!rebuildData || rebuildData.length === 0)))">
-                    <table-body
-                        ref="tbody"
-                        :draggable="draggable"
-                        :prefix-cls="prefixCls"
-                        :styleObject="tableStyle"
-                        :columns="cloneColumns"
-                        :data="rebuildData"
-                        :columns-width="columnsWidth"
-                        :obj-data="objData"></table-body>
+                <div>
+                    <div :class="[prefixCls + '-body']" :style="bodyStyle" ref="body" @scroll="handleBodyScroll"
+                        v-show="!((!!localeNoDataText && (!data || data.length === 0)) || (!!localeNoFilteredDataText && (!rebuildData || rebuildData.length === 0)))">
+                        <table-body
+                            ref="tbody"
+                            :draggable="draggable"
+                            :prefix-cls="prefixCls"
+                            :styleObject="tableStyle"
+                            :columns="cloneColumns"
+                            :data="rebuildData"
+                            :columns-width="columnsWidth"
+                            :obj-data="objData"></table-body>
+                    </div>
                 </div>
             </div>
             <div
