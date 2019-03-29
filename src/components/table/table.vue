@@ -90,7 +90,7 @@
                         :obj-data="objData"></table-body>
                 </div>
             </div>
-            <div :class="[prefixCls + '-fixed-right-header']" :style="fixedRightHeaderStyle" v-if="isRightFixed"></div>
+            <!-- <div :class="[prefixCls + '-fixed-right-header']" :style="fixedRightHeaderStyle" v-if="isRightFixed"></div> -->
             <div :class="[prefixCls + '-footer']" v-if="showSlotFooter" ref="footer"><slot name="footer"></slot></div>
         </div>
         <Spin fix size="large" v-if="loading">
@@ -289,7 +289,7 @@
                     if (this.bodyHeight === 0) {
                         width = this.tableWidth;
                     } else {
-                        width = this.tableWidth - (this.showVerticalScrollBar?this.scrollBarWidth:0);
+                        width = this.tableWidth;
                     }
 //                    const width = this.bodyHeight === 0 ? this.tableWidth : this.tableWidth - this.scrollBarWidth;
                     style.width = `${width}px`;
@@ -322,7 +322,7 @@
                 });
                 //width += this.scrollBarWidth;
                 style.width = `${width}px`;
-                style.right = `${this.showVerticalScrollBar?this.scrollBarWidth:0}px`;
+                // style.right = `${this.showVerticalScrollBar?this.scrollBarWidth:0}px`;
                 return style;
             },
             fixedRightHeaderStyle () {
@@ -347,7 +347,7 @@
             fixedBodyStyle () {
                 let style = {};
                 if (this.bodyHeight !== 0) {
-                    let height = this.bodyHeight - (this.showHorizontalScrollBar?this.scrollBarWidth:0);
+                    let height = this.bodyHeight;
                     style.height = this.showHorizontalScrollBar ? `${height}px` : `${height - 1}px`;
                 }
                 return style;
@@ -399,7 +399,7 @@
 
 
                 let unUsableWidth = hasWidthColumns.map(cell => cell.width).reduce((a, b) => a + b, 0);
-                let usableWidth = tableWidth - unUsableWidth - sumMinWidth - (this.showVerticalScrollBar?this.scrollBarWidth:0) - 1;
+                let usableWidth = tableWidth - unUsableWidth - sumMinWidth - 1;
                 let usableLength = noWidthColumns.length;
                 let columnWidth = 0;
                 if(usableWidth > 0 && usableLength > 0){
@@ -472,7 +472,7 @@
                     }
                 }
                 
-                this.tableWidth = this.cloneColumns.map(cell => cell._width).reduce((a, b) => a + b, 0) + (this.showVerticalScrollBar?this.scrollBarWidth:0) + 1;
+                this.tableWidth = this.cloneColumns.map(cell => cell._width).reduce((a, b) => a + b, 0) + 1;
                 this.columnsWidth = columnsWidth;
                 this.fixedHeader();
             },
@@ -611,8 +611,8 @@
                     let bodyContentHeight = bodyContentEl.offsetHeight;
                     let bodyHeight = bodyEl.offsetHeight;
 
-                    this.showHorizontalScrollBar = bodyEl.offsetWidth < bodyContentEl.offsetWidth + (this.showVerticalScrollBar?this.scrollBarWidth:0);
-                    this.showVerticalScrollBar = this.bodyHeight? bodyHeight - (this.showHorizontalScrollBar?this.scrollBarWidth:0) < bodyContentHeight : false;
+                    this.showHorizontalScrollBar = bodyEl.offsetWidth < bodyContentEl.offsetWidth;
+                    this.showVerticalScrollBar = this.bodyHeight? bodyHeight < bodyContentHeight : false;
                     
                     if(this.showVerticalScrollBar){
                         bodyEl.classList.add(this.prefixCls +'-overflowY');
