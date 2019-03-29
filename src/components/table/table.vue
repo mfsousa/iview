@@ -117,7 +117,8 @@
     export default {
         name: 'Table',
         mixins: [ Locale ],
-        components: { tableHead, tableBody, Spin, Vuebar },
+        directive: { Vuebar },
+        components: { tableHead, tableBody, Spin },
         provide () {
             return {
                 tableRoot: this
