@@ -12,8 +12,8 @@
                     :columns-width="columnsWidth"
                     :data="rebuildData"></table-head>
             </div>
-            <div v-bar>
-                <div :class="[prefixCls + '-body']" ref="body" @scroll="handleBodyScroll"
+            <div v-bar :style="{'height':bodyStyle.height}">
+                <div :class="[prefixCls + '-body']"  ref="body" @scroll="handleBodyScroll"
                     v-show="!((!!localeNoDataText && (!data || data.length === 0)) || (!!localeNoFilteredDataText && (!rebuildData || rebuildData.length === 0)))">
                     <table-body
                         ref="tbody"
