@@ -97,6 +97,7 @@
     </div>
 </template>
 <script>
+    import Vuebar from 'vuebar';
     import tableHead from './table-head.vue';
     import tableBody from './table-body.vue';
     import Spin from '../spin/spin.vue';
@@ -116,7 +117,7 @@
     export default {
         name: 'Table',
         mixins: [ Locale ],
-        components: { tableHead, tableBody, Spin },
+        components: { tableHead, tableBody, Spin, Vuebar },
         provide () {
             return {
                 tableRoot: this
