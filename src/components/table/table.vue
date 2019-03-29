@@ -13,7 +13,7 @@
                     :data="rebuildData"></table-head>
             </div>
             <div v-bar>
-                <div :class="[prefixCls + '-body']" :style="bodyStyle" ref="body" @scroll="handleBodyScroll"
+                <div :class="[prefixCls + '-body']" ref="body" @scroll="handleBodyScroll"
                     v-show="!((!!localeNoDataText && (!data || data.length === 0)) || (!!localeNoFilteredDataText && (!rebuildData || rebuildData.length === 0)))">
                     <table-body
                         ref="tbody"
