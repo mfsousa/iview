@@ -12,17 +12,19 @@
                     :columns-width="columnsWidth"
                     :data="rebuildData"></table-head>
             </div>
-            <div v-bar :class="[prefixCls + '-body']" :style="bodyStyle" ref="body" @scroll="handleBodyScroll"
-                v-show="!((!!localeNoDataText && (!data || data.length === 0)) || (!!localeNoFilteredDataText && (!rebuildData || rebuildData.length === 0)))">
-                <table-body
-                    ref="tbody"
-                    :draggable="draggable"
-                    :prefix-cls="prefixCls"
-                    :styleObject="tableStyle"
-                    :columns="cloneColumns"
-                    :data="rebuildData"
-                    :columns-width="columnsWidth"
-                    :obj-data="objData"></table-body>
+            <div v-bar>
+                <div :class="[prefixCls + '-body']" :style="bodyStyle" ref="body" @scroll="handleBodyScroll"
+                    v-show="!((!!localeNoDataText && (!data || data.length === 0)) || (!!localeNoFilteredDataText && (!rebuildData || rebuildData.length === 0)))">
+                    <table-body
+                        ref="tbody"
+                        :draggable="draggable"
+                        :prefix-cls="prefixCls"
+                        :styleObject="tableStyle"
+                        :columns="cloneColumns"
+                        :data="rebuildData"
+                        :columns-width="columnsWidth"
+                        :obj-data="objData"></table-body>
+                </div>
             </div>
             <div
                 :class="[prefixCls + '-tip']" :style="bodyStyle" @scroll="handleBodyScroll"
@@ -117,7 +119,7 @@
     export default {
         name: 'Table',
         mixins: [ Locale ],
-        directive: { Vuebar },
+        directives: { Vuebar },
         components: { tableHead, tableBody, Spin },
         provide () {
             return {
